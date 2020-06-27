@@ -1,5 +1,5 @@
 class Vote:
-    def __init__(self, image_id='asf2', sub_id='my-user-1234', value=1):
+    def __init__(self, image_id='avys', sub_id='my-user-12344321', value=0):
         self.image_id = image_id
         self.sub_id = sub_id
         self.value = value
