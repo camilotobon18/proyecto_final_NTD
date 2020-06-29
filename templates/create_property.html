@@ -1,0 +1,35 @@
+{% extends "/layouts/main.html" %}
+
+{% block body %}
+    <form method="POST" action="/save-property" >
+        <div>
+            <label for="title_property">Title</label>
+            <input id="title_property" name="title_property" type="text" required>
+        </div>
+        <div>
+            <label for="type_property">Type</label>
+            <input id="type_property" name="type_property" type="text" required>
+        </div>
+        <div>
+            <label for="payment_type">Payment Type</label>
+            <input id="payment_type" name="payment_type" type="text" required>
+        </div>
+        <div>    
+            <label for="address">Address</label>
+            <input id="address" name="address" type="text" required>
+        </div>
+        <div>   
+            <label for="rooms">Rooms</label>
+            <input id="rooms" name="rooms" type="number" required>
+        </div>
+        <div>   
+            <label for="price">Price</label>
+            <input id="price" name="price" type="number" required>
+        </div>
+        <div>   
+            <label for="area">Area</label>
+            <input id="area" name="area" type="number" required>
+        </div>
+        <button type="submit">Create</button>
+    </form>
+{% endblock %}

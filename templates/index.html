@@ -2,6 +2,7 @@
 
 {% block body %}
 
+<h1>{{ result }}</h1>
 <!--
   <table class="table table-dark">
             <thead>
@@ -28,11 +29,13 @@
             </tbody>
           </table>
 -->
+
         <table class="table table-dark">
             <thead>
               <tr>
                 <th scope="col">Title</th>
                 <th scope="col">Type</th>
+                <th scope="col">Payment type</th>
                 <th scope="col">Address</th>
                 <th scope="col">Rooms</th>
                 <th scope="col">Price</th>
@@ -43,18 +46,19 @@
             <tbody>
               {% for property in properties %}
               <tr>
-                <th scope="row">{{ property['title_property']}}</th>
-                <td>{{ property['country_type_property']}}</td>
+                <th scope="row">{{ property['title']}}</th>
+                <td>{{ property['property_type']}}</td>
+                <td>{{ property['payment_type']}}</td>
                 <td>{{ property['address']}}</td>
                 <td>{{ property['rooms']}}</td>
                 <td>{{ property['price']}}</td>
                 <td>{{ property['area']}}</td>
-                <td> <a href="/view/{{ property['id']}} ">View</a></td>
+                <td> <a href="/view-property/{{ property['_id']}} ">View</a></td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
-
+        
 {% endblock %}
 
 

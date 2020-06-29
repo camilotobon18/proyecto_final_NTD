@@ -27,13 +27,50 @@ def session_validate():
 def index():
     res = RequestsApi.get_all_api()
     print(res)
-    return render_template("index.html", votes = res)
+    return render_template("index.html", properties = res['properties'])
+
+@app.route('/new-property', methods = ['GET', 'POST'])
+def new_property():
+    return render_template('create_property.html')
+
+@app.route('/save-property', methods = ['GET', 'POST'])
+def save_property():
+    if request.method == 'POST':
+        try:
+            title_input = request.form['title_property']
+            type_input = request.form['type_property']
+            payment_input = request.form['payment_type']
+            address_input = request.form['address']
+            rooms_input = request.form['rooms']
+            price_input = request.form['price']
+            area_input = request.form['area']
+            new_property = Property(title_property=title_input, type_property=type_input, payment_type=payment_input, address=address_input, rooms=rooms_input, price=price_input, area=area_input, property_image="img.jpg")
+            res = RequestsApi.save_api(new_property)
+            print(res)
+            return redirect(url_for('index', result=res))
+        except:
+            return 'Not saved property'
+
+@app.route('/view-property/<id>')
+def view(id):
+    res = RequestsApi.get_one_api(id)
+    #print(res)
+    return render_template('property_detail.html', one_property= res['property'])
+
+@app.route('/delete-property/<id>')
+def delete(id):
+    res= RequestsApi.delete_api(id)
+    print(res)
+    return "Deleted"
+
+
+
 
 @app.route('/new-user', methods = ['GET', 'POST'])
 def new_user():
     return render_template('create_user.html')
 
-@app.route('/save', methods = ['GET', 'POST'])
+@app.route('/save-user', methods = ['GET', 'POST'])
 def save():
     #user = User(name="")
     #vote = Vote(value=0, image_id=img)
@@ -61,42 +98,14 @@ def save():
             return 'Not saved'
         #return render_template("create_user.html", form=user_form)
 
-@app.route('/delete/<id>')
-def delete(id):
-    res= RequestsApi.delete_api(id)
-    print(res)
-    return "Deleted"
 
 
 
 
 
 
-@app.route('/new-property', methods = ['GET', 'POST'])
-def new_property():
-    return render_template('create_property.html')
 
-@app.route('/save-property', methods = ['GET', 'POST'])
-def save_property():
-    if request.method == 'POST':
-        try:
-            title_input = request.form['title_property']
-            type_input = request.form['type_property']
-            address_input = request.form['address']
-            rooms_input = request.form['rooms']
-            price_input = request.form['price']
-            area_input = request.form['area']
-            new_property = Property(title_property=title_input, type_property=type_input, address=address_input, rooms=rooms_input, price=price_input, area=area_input)
-            #res = RequestsApi.save_api(new_property)
-            return redirect(url_for('index'))
-        except:
-            return 'Not saved property'
 
-@app.route('/view/<id>')
-def view(id):
-    #res = RequestsApi.get_one_api(id)
-    #print(res)
-    return render_template('property_detail.html', one_property= res)
 
 
 
