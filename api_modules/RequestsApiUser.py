@@ -1,23 +1,19 @@
 import requests
 from models.User import User
-class RequestsApi:
+class RequestsApiUser:
 
     url = "http://localhost:3000/"
     url_users = url+"user"
 
     @staticmethod
-    def save_api(property):
+    def save_api(user):
         try:
             
-            data = "{\"name\":\""+user.get_name()+" \",\"last_name\":\""+user.get_last_name()+" \",\"email\":\" "
-            +user.get_email()+ " \",\"password\":\" "+user.get_password() +"}"
-            #headers = {
-            #    'content-type': "application/json",
-            #    'x-api-key': "37172f24-8ea2-4faa-8306-4b6a364480c0"
-            #}
-            response = requests.request("POST", RequestsApi.url_users, data=data)
+            data = "{\"email\":\" "+user.get_email()+ " \",\"password\":\" "+user.get_password() +"}"
+            
+            response = requests.post(RequestsApiUser.url_users+"/signup/", data=data)
             if response.status_code != 200:
-                return False
+                return response.text
             else:
                 return response.json()
         except:
@@ -26,7 +22,7 @@ class RequestsApi:
     @staticmethod
     def get_one_api(id):
         try:
-            response = requests.request("GET", RequestsApi.url_properties + "/" + str(id))#, headers=RequestsApi.headers)
+            response = requests.request("GET", RequestsApiUser.url_properties + "/" + str(id))#, headers=RequestsApi.headers)
             if response.status_code != 200:
                 return True
             else: 
@@ -37,7 +33,7 @@ class RequestsApi:
     @staticmethod
     def delete_api(id):
         try:
-            response = requests.request("DELETE", RequestsApi.url_properties + "/" + str(id), headers=RequestsApi.headers)
+            response = requests.request("DELETE", RequestsApiUser.url_properties + "/" + str(id), headers=RequestsApi.headers)
             if response.status_code != 200:
                 return True
             else:

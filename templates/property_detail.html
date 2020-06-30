@@ -1,28 +1,23 @@
 {% extends "/layouts/main.html" %}
-{% block body %}
-<h1>"C:/Users/ctobon/Documents/MEGAsync/NTD_Camilo/Momento_Final/REST_API_momento3-master/{{ one_property['propertyImage'] }}" </h1>
 
-<h1>"C:/Users/ctobon/Documents/MEGAsync/NTD_Camilo/Momento_Final/REST_API_momento3-master/"+ {{ one_property['propertyImage'] }} </h1>
+{% block body %}
+<div class="column is-5-tablet is-8-desktop is-8-widescreen">   
     <div class="card">
         <div class="card-image">
         <figure class="image is-2by1">
-            <img src=C:/Users/ctobon/Documents/MEGAsync/NTD_Camilo/Momento_Final/REST_API_momento3-master/{{ one_property['propertyImage'] }}  alt="Placeholder image">
+            <img src="http://localhost:3000/{{ one_property['propertyImage'] }}"  alt="Placeholder image">
         </figure>
         </div>
         <div class="card-content">
         <div class="media">
-            <div class="media-left">
-            <figure class="image is-28x28">
-                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-            </figure>
-            </div>
+            
             <div class="media-content">
             <p class="title is-4">{{ one_property['title']}}</p>
             <p class="subtitle is-6">Type: {{ one_property['property_type'] }}</p>
             </div>
         </div>
-    
         <div class="content">
+            <p>Payment Type: {{ one_property['payment_type'] }}</p>
             <p>Address: {{ one_property['address'] }}</p>
             <p>Rooms: {{ one_property['rooms'] }}</p>
             <p>Price: {{ one_property['price'] }} </p>
@@ -30,4 +25,6 @@
         </div>
         </div>
     </div>
+</div>
+
 {% endblock %}

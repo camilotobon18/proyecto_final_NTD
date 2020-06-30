@@ -1,25 +1,22 @@
 {% extends "/layouts/main.html" %}
 
 {% block body %}
-    <form method="POST" action="/save" >
-        <div>
-            <label for="name_user">Name</label>
-            <input id="name_user" name="name_user" type="text" required>
-        </div>
-        <div>
-            <label for="last_name">Last name</label>
-            <input id="last_name" name="last_name" type="text" required>
-        </div>
-        <div>    
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" required>
-        </div>
-        <div>   
-            <label for="password">Password</label>
-            <input id="password" name="password" type="password" required>
-        </div>
+<div class="column is-5-tablet is-6-desktop is-6-widescreen">
+    <form class="box" method="POST" action="/save-user" >
+        <h3 class="title is-3 has-text-dark">User</h3>
 
-        <button type="submit">Create</button>
+        <div class="field">    
+            <label class="label" for="email">Email</label>
+            <input class="input" id="email" name="email" type="email" required>
+        </div>
+        <div class="field">   
+            <label class="label" for="password">Password</label>
+            <input class="input" id="password" name="password" type="password" required>
+        </div>
+        <div class="field is-grouped is-grouped-right">
+            <button class="button is-success" type="submit">Create</button>
+        </div>
     </form>
+</div>
 {% endblock %}
 

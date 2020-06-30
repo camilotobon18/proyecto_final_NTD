@@ -1,35 +1,41 @@
 {% extends "/layouts/main.html" %}
 
 {% block body %}
-    <form method="POST" action="/save-property" >
+<div class="column is-5-tablet is-6-desktop is-6-widescreen">
+    <form class="box" method="POST" action="/save-property" >
+        <h3 class="title is-3 has-text-dark">Property</h3>
         <div>
-            <label for="title_property">Title</label>
-            <input id="title_property" name="title_property" type="text" required>
+            <label class="label" for="title_property">Title</label>
+            <input class="input" id="title_property" name="title_property" type="text" required>
         </div>
         <div>
-            <label for="type_property">Type</label>
-            <input id="type_property" name="type_property" type="text" required>
+            <label class="label" for="type_property">Type</label>
+            <input class="input" id="type_property" name="type_property" type="text" required>
         </div>
         <div>
-            <label for="payment_type">Payment Type</label>
-            <input id="payment_type" name="payment_type" type="text" required>
+            <label class="label" for="payment_type">Payment Type</label>
+            <input class="input" id="payment_type" name="payment_type" type="text" required>
         </div>
         <div>    
-            <label for="address">Address</label>
-            <input id="address" name="address" type="text" required>
+            <label class="label" for="address">Address</label>
+            <input class="input" id="address" name="address" type="text" required>
         </div>
         <div>   
-            <label for="rooms">Rooms</label>
-            <input id="rooms" name="rooms" type="number" required>
+            <label class="label" for="rooms">Rooms</label>
+            <input class="input" id="rooms" name="rooms" type="number" required>
         </div>
         <div>   
-            <label for="price">Price</label>
-            <input id="price" name="price" type="number" required>
+            <label class="label" for="price">Price</label>
+            <input class="input" id="price" name="price" type="number" required>
         </div>
         <div>   
-            <label for="area">Area</label>
-            <input id="area" name="area" type="number" required>
+            <label class="label" for="area">Area</label>
+            <input class="input" id="area" name="area" type="number" required>
         </div>
-        <button type="submit">Create</button>
+        <br />
+        <div class="field is-grouped is-grouped-right">
+            <button class="button is-link" type="submit">Create</button>
+        </div>
     </form>
+</div>
 {% endblock %}

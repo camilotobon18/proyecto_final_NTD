@@ -1,36 +1,7 @@
 {% extends "/layouts/main.html" %}
 
 {% block body %}
-
-<h1>{{ result }}</h1>
-<!--
-  <table class="table table-dark">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Country code</th>
-                <th scope="col">Sub ID</th>
-                <th scope="col">Value</th>
-                <th scope="col">Created Ad</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for vote in votes %}
-              <tr>
-                <th scope="row">{{ vote['id']}}</th>
-                <td>{{ vote['country_code']}}</td>
-                <td>{{ vote['sub_id']}}</td>
-                <td>{{ vote['value']}}</td>
-                <td>{{ vote['created_ad']}}</td>
-                <td> <a href="/view/{{ vote['id']}} ">View</a></td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
--->
-
-        <table class="table table-dark">
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
             <thead>
               <tr>
                 <th scope="col">Title</th>
@@ -51,14 +22,14 @@
                 <td>{{ property['payment_type']}}</td>
                 <td>{{ property['address']}}</td>
                 <td>{{ property['rooms']}}</td>
-                <td>{{ property['price']}}</td>
+                <td>$ {{ property['price']}}</td>
                 <td>{{ property['area']}}</td>
                 <td> <a href="/view-property/{{ property['_id']}} ">View</a></td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
-        
+
 {% endblock %}
 
 

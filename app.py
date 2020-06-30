@@ -5,6 +5,7 @@ import requests
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask import session
 from api_modules.RequestsApi import RequestsApi
+from api_modules.RequestsApiUser import RequestsApiUser
 from models.User import User
 from models.Property import Property
 from models.Vote import Vote
@@ -23,6 +24,7 @@ def session_validate():
         return False
 
 
+
 @app.route('/')
 def index():
     res = RequestsApi.get_all_api()
@@ -35,6 +37,7 @@ def new_property():
 
 @app.route('/save-property', methods = ['GET', 'POST'])
 def save_property():
+    
     if request.method == 'POST':
         try:
             title_input = request.form['title_property']
@@ -54,7 +57,6 @@ def save_property():
 @app.route('/view-property/<id>')
 def view(id):
     res = RequestsApi.get_one_api(id)
-    #print(res)
     return render_template('property_detail.html', one_property= res['property'])
 
 @app.route('/delete-property/<id>')
@@ -72,67 +74,38 @@ def new_user():
 
 @app.route('/save-user', methods = ['GET', 'POST'])
 def save():
-    #user = User(name="")
-    #vote = Vote(value=0, image_id=img)
-    #res = RequestsApi.save_api(vote)
-    #print(res)
-    #user_form = UserForm(request.form)
     if request.method == 'POST':
         try:
-            #ruta = os.getcwd()+'\\static\\img'
-            #imglist = listdir(ruta)
-            #img = random.choice(imglist)
-            #name_input = user_form.name.data
-            #last_name_input = user_form.last_name.data
-            #email_input = user_form.email.data
-            #password_input =user_form.password.data
-            name_input = request.form['name_user']
-            last_name_input = request.form['last_name']
             email_input = request.form['email']
             password_input = request.form['password']
-            user = User(name=name_input, last_name=last_name_input, email=email_input, password=password_input)
-            #res = RequestsApi.save_api(user)
-            print(name_input,last_name_input,email_input,password_input, sep=" ")
-            return redirect(url_for('index'))
+            user = User(email=email_input, password=password_input)
+            res = RequestsApiUser.save_api(user)
+            print(res)
+            return redirect(url_for('index', res_user=res))
         except:
             return 'Not saved'
-        #return render_template("create_user.html", form=user_form)
-
-
-
-
-
-
-
-
-
-
+       
 
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        try:
-            email_input = request.form['email']
-            password_input = request.form['password']
-            
-            if(email_input == 'p'):
-                session
+    #if request.method == 'POST':
+    #    try:
+    #        email_input = request.form['email']
+    #        password_input = request.form['password']
+    #        
+    #        if(email_input == 'p'):
+    #            session
 
-            return redirect(url_for('index'))
-        except:
-            return 'Not saved'
+    #            return redirect(url_for('index'))
+    #    except:
+    #        return 'Not saved'
+
+    return render_template('login.html')
 
 
 
 
-
-#@app.route('/login', methods = ['GET', 'POST'])
-#def login():
-#    login_form = LoginForm(request.form)
-#    if request.method == 'POST' and login_form.validate():
-#        session['username'] = login_form.email.data
-#    return render_template('login.html', form = login_form)
 
 
 if __name__ == '__main__':

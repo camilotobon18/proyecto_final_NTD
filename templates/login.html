@@ -1,15 +1,19 @@
 {% extends "/layouts/main.html" %}
 
 {% block body %}
-    <form method="POST" action="/login">
-        <div>    
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" required>
-        </div>
-        <div>   
-            <label for="password">Password</label>
-            <input id="password" name="password" type="password" required>
-        </div>
-        <button type="submit">Send</button>
-    </form>
+<div class="columns is-centered">
+    <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+        <form class="box" method="POST" action="/login">
+            <div>    
+                <label for="email" >Email</label>
+                <input class="input is-rounded" id="email" name="email" type="email" required>
+            </div>
+            <div>   
+                <label for="password">Password</label>
+                <input class="input is-rounded" id="password" name="password" type="password" required>
+            </div>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</div>
 {% endblock}
